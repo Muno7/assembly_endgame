@@ -4,7 +4,9 @@ import { languages } from './languages'
 export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = React.useState('elephant')
   const [guessedLetters, setGuessedLetters] = React.useState([])
-  console.log(guessedLetters)
+
+  let wrongGuessCount = 
+  guessedLetters.filter(letter => !currentWord.includes(letter)).length
 
   function addGuessedLetter(guess) {
     if (!guessedLetters.includes(guess)) {
@@ -29,9 +31,11 @@ export default function AssemblyEndgame() {
     const styles = {
       backgroundColor: lang.backgroundColor, 
       color: lang.color}
+    const className = wrongGuessCount > 0 ? 'lang lost' : 'lang'
+    wrongGuessCount -= 1
     return (
       <p 
-        className='lang'
+        className={className}
         key={lang.name}
         style={styles}
       >
