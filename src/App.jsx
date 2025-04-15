@@ -1,22 +1,27 @@
 import React from 'react'
 import { languages } from './languages'
 
-const languageElements = languages.map(lang => {
-  const styles = {
-    backgroundColor: lang.backgroundColor, 
-    color: lang.color}
-  return (
-    <p 
-      className='lang'
-      key={lang.name}
-      style={styles}
-    >
-      {lang.name}
-    </p>
-  )
-})
-
 export default function AssemblyEndgame() {
+  
+  const [currentWord, setCurrentWord] = React.useState('react')
+
+  const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>)
+
+  const languageElements = languages.map(lang => {
+    const styles = {
+      backgroundColor: lang.backgroundColor, 
+      color: lang.color}
+    return (
+      <p 
+        className='lang'
+        key={lang.name}
+        style={styles}
+      >
+        {lang.name}
+      </p>
+    )
+  })
+
   return (
     <main>
       <header>
@@ -30,6 +35,9 @@ export default function AssemblyEndgame() {
       </header>
       <section className='languages-container'>
         {languageElements}
+      </section>
+      <section className='word-container'>
+        {letterElements}
       </section>
     </main>
   )

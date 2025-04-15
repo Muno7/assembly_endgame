@@ -73,3 +73,22 @@ header > p {
   padding: 6px 4px;
   font-weight: 600;
 }
+
+.word-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+
+}
+
+.word-container span {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(50, 50, 50, 1);
+  color: rgba(249, 244, 218, 1);
+  border-bottom: 1px solid rgba(249, 244, 218, 1);
+}
