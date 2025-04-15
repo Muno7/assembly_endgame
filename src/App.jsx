@@ -2,14 +2,22 @@ import React from 'react'
 import { languages } from './languages'
 
 export default function AssemblyEndgame() {
-  
   const [currentWord, setCurrentWord] = React.useState('elephant')
+  const [guessedLetters, setGuessedLetters] = React.useState([])
+  console.log(guessedLetters)
 
+  function addGuessedLetter(guess) {
+    if (!guessedLetters.includes(guess)) {
+      setGuessedLetters(prevLetters => ([ 
+        ...prevLetters, 
+         guess]))
+    }
+  }
+  
   const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
-  const keyboardElements = alphabet.split('').map(letter => <button key={letter}>{letter.toUpperCase()}</button>)
+  const keyboardElements = alphabet.split('').map(letter => <button key={letter} onClick={() => addGuessedLetter(letter)}>{letter.toUpperCase()}</button>)
 
   const languageElements = languages.map(lang => {
     const styles = {
