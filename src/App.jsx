@@ -14,10 +14,16 @@ export default function AssemblyEndgame() {
     }
   }
   
-  const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>)
+  const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{guessedLetters.includes(letter) ? letter.toUpperCase() : ''}</span>)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
-  const keyboardElements = alphabet.split('').map(letter => <button key={letter} onClick={() => addGuessedLetter(letter)}>{letter.toUpperCase()}</button>)
+  const keyboardElements = alphabet.split('').map((letter) => {
+      let keyboardStyle = {}
+      if (guessedLetters.includes(letter)) {
+        keyboardStyle = currentWord.includes(letter) ? {backgroundColor: 'rgba(16, 169, 91, 1)'} : {backgroundColor: 'rgba(236, 93, 73, 1)'}
+      }
+    return <button key={letter} style={keyboardStyle} onClick={() => addGuessedLetter(letter)}>{letter.toUpperCase()}</button>
+    })
 
   const languageElements = languages.map(lang => {
     const styles = {
