@@ -3,9 +3,13 @@ import { languages } from './languages'
 
 export default function AssemblyEndgame() {
   
-  const [currentWord, setCurrentWord] = React.useState('react')
+  const [currentWord, setCurrentWord] = React.useState('elephant')
 
   const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{letter.toUpperCase()}</span>)
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+  const keyboardElements = alphabet.split('').map(letter => <button key={letter}>{letter.toUpperCase()}</button>)
 
   const languageElements = languages.map(lang => {
     const styles = {
@@ -38,6 +42,9 @@ export default function AssemblyEndgame() {
       </section>
       <section className='word-container'>
         {letterElements}
+      </section>
+      <section className='keyboard'>
+        {keyboardElements}
       </section>
     </main>
   )
