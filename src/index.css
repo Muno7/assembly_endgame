@@ -123,6 +123,11 @@ header > p {
   max-width: 480px;
 }
 
+.keyboard > button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5
+}
+
 .word-container > span,
 .keyboard > button {
   display: flex;

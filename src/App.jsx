@@ -32,7 +32,7 @@ export default function AssemblyEndgame() {
       if (guessedLetters.includes(letter)) {
         keyboardStyle = currentWord.includes(letter) ? {backgroundColor: 'rgba(16, 169, 91, 1)'} : {backgroundColor: 'rgba(236, 93, 73, 1)'}
       }
-    return <button key={letter} style={keyboardStyle} onClick={() => addGuessedLetter(letter)}>{letter.toUpperCase()}</button>
+    return <button disabled={isGameOver} key={letter} style={keyboardStyle} onClick={() => addGuessedLetter(letter)}>{letter.toUpperCase()}</button>
     })
 
   const languageElements = languages.map((lang, index)=> {
