@@ -135,6 +135,7 @@ header > p {
   align-items: center;
   width: 40px;
   height: 40px;
+  font-weight: bold;
 }
 
 .keyboard > button {

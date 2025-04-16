@@ -1,9 +1,10 @@
 import React from 'react'
-import { languages } from './languages'
+import { languages } from './utils/languages'
 import { getFarewellText } from './utils/farewellmessage'
+import { getRandomWord } from './utils/getRandomWord'
 
 export default function AssemblyEndgame() {
-  const [currentWord, setCurrentWord] = React.useState('elephant')
+  const [currentWord, setCurrentWord] = React.useState(() => getRandomWord())
   const [guessedLetters, setGuessedLetters] = React.useState([])
   const gameStatusElement = React.useRef(null)
 
@@ -24,7 +25,19 @@ export default function AssemblyEndgame() {
     }
   }
   
-  const letterElements = currentWord.split('').map((letter, index) => <span key={index}>{guessedLetters.includes(letter) ? letter.toUpperCase() : ''}</span>)
+  const letterElements = currentWord.split('').map((letter, index) => {
+    const isLetterGuessed = guessedLetters.includes(letter)
+    const letterStyle = isLetterGuessed ? {color: 'white'} : {color:'rgb(186, 42, 42)'}
+    let renderLetter = letter.toUpperCase()
+    if (!isGameLost) {
+      renderLetter = isLetterGuessed ? letter.toUpperCase() : ''
+    }
+    return (
+      <span style={letterStyle} key={index}>
+        {renderLetter}
+      </span>
+    )
+  })
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
   const keyboardElements = alphabet.split('').map((letter) => {
@@ -83,6 +96,11 @@ export default function AssemblyEndgame() {
     return gameStatus
   }
 
+  function resetGame() {
+    setCurrentWord(getRandomWord())
+    setGuessedLetters([])
+    gameStatusElement.current.className = 'game-status'
+  }
   return (
     <main>
       <header>
@@ -102,7 +120,7 @@ export default function AssemblyEndgame() {
       <section className='keyboard'>
         {keyboardElements}
       </section>
-      {isGameOver && <button className="new-game">New Game</button>}
+      {isGameOver && <button onClick={resetGame} className="new-game">New Game</button>}
     </main>
   )
 }
