@@ -42,7 +42,6 @@ header > p {
 }
 
 .game-status {
-  background-color: rgba(16, 169, 91, 1);
   height: 60px;
   padding: 5px;
   border-radius: 5px;
@@ -50,6 +49,18 @@ header > p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.game-status.won {
+  background-color: #10A95B;
+}
+
+.game-status.lost {
+  background-color: #BA2A2A;
+}
+
+.game-status.on {
+  background-color: rgba(122, 94, 167, 1);
 }
 
 .game-status > h2 {
