@@ -2,6 +2,7 @@ import React from 'react'
 import { languages } from './utils/languages'
 import { getFarewellText } from './utils/farewellmessage'
 import { getRandomWord } from './utils/getRandomWord'
+import Confetti from 'react-confetti'
 
 export default function AssemblyEndgame() {
   const [currentWord, setCurrentWord] = React.useState(() => getRandomWord())
@@ -39,7 +40,7 @@ export default function AssemblyEndgame() {
     )
   })
 
-  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  const alphabet = "qwertyuiopasdfghjklzxcvbnm"
   const keyboardElements = alphabet.split('').map((letter) => {
       let keyboardStyle = {}
       if (guessedLetters.includes(letter)) {
@@ -103,6 +104,7 @@ export default function AssemblyEndgame() {
   }
   return (
     <main>
+      {isGameWon ? <Confetti recycle={false} numberOfPieces={1000} /> : undefined}
       <header>
         <h1>Assembly: Endgame</h1>
         <p>Guess the word within 8 attempts to keep the 
